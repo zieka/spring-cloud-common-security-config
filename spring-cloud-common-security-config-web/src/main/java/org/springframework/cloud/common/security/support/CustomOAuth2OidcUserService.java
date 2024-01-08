@@ -40,7 +40,7 @@ import org.springframework.util.StringUtils;
  */
 public class CustomOAuth2OidcUserService implements OAuth2UserService<OidcUserRequest, OidcUser> {
 
-	private final static Logger log = LoggerFactory.getLogger(CustomOAuth2OidcUserService.class);
+	private static final Logger log = LoggerFactory.getLogger(CustomOAuth2OidcUserService.class);
 	final OidcUserService delegate = new OidcUserService();
 	final AuthoritiesMapper authorityMapper;
 

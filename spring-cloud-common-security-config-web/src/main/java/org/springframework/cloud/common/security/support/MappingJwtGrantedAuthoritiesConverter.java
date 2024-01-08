@@ -46,7 +46,7 @@ import org.springframework.util.StringUtils;
  */
 public final class MappingJwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
 
-	private final static Logger log = LoggerFactory.getLogger(MappingJwtGrantedAuthoritiesConverter.class);
+	private static final Logger log = LoggerFactory.getLogger(MappingJwtGrantedAuthoritiesConverter.class);
 	private static final String DEFAULT_AUTHORITY_PREFIX = "SCOPE_";
 
 	private static final Collection<String> WELL_KNOWN_SCOPES_CLAIM_NAMES =
@@ -78,10 +78,10 @@ public final class MappingJwtGrantedAuthoritiesConverter implements Converter<Jw
 				}
 				Stream<String> s1 = roleAuthoritiesMapping.entrySet().stream()
 					.filter(entry -> entry.getValue().equals(authority))
-					.map(entry -> entry.getKey()).distinct();
+					.map(Map.Entry::getKey).distinct();
 				Stream<String> s2 = groupAuthoritiesMapping.entrySet().stream()
 					.filter(entry -> entry.getValue().equals(authority))
-					.map(entry -> entry.getKey()).distinct();
+					.map(Map.Entry::getKey).distinct();
 				return Stream.concat(s1, s2);
 			})
 			.distinct()

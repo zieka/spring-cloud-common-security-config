@@ -36,7 +36,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
  */
 public class CustomPlainOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-	private final static Logger log = LoggerFactory.getLogger(CustomPlainOAuth2UserService.class);
+	private static final Logger log = LoggerFactory.getLogger(CustomPlainOAuth2UserService.class);
 	final DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
 	final AuthoritiesMapper authorityMapper;
 
@@ -56,8 +56,7 @@ public class CustomPlainOAuth2UserService implements OAuth2UserService<OAuth2Use
 				accessToken.getTokenValue());
 		final String userNameAttributeName = userRequest.getClientRegistration()
 				.getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
-		final OAuth2User oauth2UserToReturn = new DefaultOAuth2User(mappedAuthorities, oauth2User.getAttributes(),
+		return new DefaultOAuth2User(mappedAuthorities, oauth2User.getAttributes(),
 				userNameAttributeName);
-		return oauth2UserToReturn;
 	}
 }

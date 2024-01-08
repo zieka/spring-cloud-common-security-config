@@ -49,9 +49,7 @@ public class OAuth2TokenUtilsServiceTests {
 		final OAuth2AuthorizedClientService oauth2AuthorizedClientService = mock(OAuth2AuthorizedClientService.class);
 		OAuth2TokenUtilsService oAuth2TokenUtilsService = new DefaultOAuth2TokenUtilsService(oauth2AuthorizedClientService);
 
-		assertThatThrownBy(() -> {
-			oAuth2TokenUtilsService.getAccessTokenOfAuthenticatedUser();
-		}).isInstanceOf(IllegalStateException.class).hasMessageContaining(
+		assertThatThrownBy(oAuth2TokenUtilsService::getAccessTokenOfAuthenticatedUser).isInstanceOf(IllegalStateException.class).hasMessageContaining(
 				"Cannot retrieve the authentication object from the SecurityContext. Are you authenticated?");
 	}
 
@@ -63,9 +61,7 @@ public class OAuth2TokenUtilsServiceTests {
 		final OAuth2AuthorizedClientService oauth2AuthorizedClientService = mock(OAuth2AuthorizedClientService.class);
 		OAuth2TokenUtilsService oAuth2TokenUtilsService = new DefaultOAuth2TokenUtilsService(oauth2AuthorizedClientService);
 
-		assertThatThrownBy(() -> {
-			oAuth2TokenUtilsService.getAccessTokenOfAuthenticatedUser();
-		}).isInstanceOf(IllegalStateException.class).hasMessageContaining("Unsupported authentication object type");
+		assertThatThrownBy(oAuth2TokenUtilsService::getAccessTokenOfAuthenticatedUser).isInstanceOf(IllegalStateException.class).hasMessageContaining("Unsupported authentication object type");
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 
@@ -79,9 +75,7 @@ public class OAuth2TokenUtilsServiceTests {
 		final OAuth2AuthorizedClientService oauth2AuthorizedClientService = mock(OAuth2AuthorizedClientService.class);
 		OAuth2TokenUtilsService oAuth2TokenUtilsService = new DefaultOAuth2TokenUtilsService(oauth2AuthorizedClientService);
 
-		assertThatThrownBy(() -> {
-			oAuth2TokenUtilsService.getAccessTokenOfAuthenticatedUser();
-		}).isInstanceOf(IllegalStateException.class)
+		assertThatThrownBy(oAuth2TokenUtilsService::getAccessTokenOfAuthenticatedUser).isInstanceOf(IllegalStateException.class)
 				.hasMessageContaining("The retrieved principalName must not be null or empty.");
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
@@ -96,9 +90,7 @@ public class OAuth2TokenUtilsServiceTests {
 		final OAuth2AuthorizedClientService oauth2AuthorizedClientService = mock(OAuth2AuthorizedClientService.class);
 		OAuth2TokenUtilsService oAuth2TokenUtilsService = new DefaultOAuth2TokenUtilsService(oauth2AuthorizedClientService);
 
-		assertThatThrownBy(() -> {
-			oAuth2TokenUtilsService.getAccessTokenOfAuthenticatedUser();
-		}).isInstanceOf(IllegalStateException.class)
+		assertThatThrownBy(oAuth2TokenUtilsService::getAccessTokenOfAuthenticatedUser).isInstanceOf(IllegalStateException.class)
 				.hasMessageContaining("The retrieved clientRegistrationId must not be null or empty.");
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
@@ -114,9 +106,7 @@ public class OAuth2TokenUtilsServiceTests {
 		when(oauth2AuthorizedClientService.loadAuthorizedClient("uaa", "my-username")).thenReturn(getOAuth2AuthorizedClient());
 		final OAuth2TokenUtilsService oauth2TokenUtilsService = new DefaultOAuth2TokenUtilsService(oauth2AuthorizedClientService);
 
-		assertThatThrownBy(() -> {
-			oauth2TokenUtilsService.getAccessTokenOfAuthenticatedUser();
-		}).isInstanceOf(IllegalStateException.class).hasMessageContaining(
+		assertThatThrownBy(oauth2TokenUtilsService::getAccessTokenOfAuthenticatedUser).isInstanceOf(IllegalStateException.class).hasMessageContaining(
 				"No oauth2AuthorizedClient returned for clientRegistrationId 'CID' and principalName 'my-username'.");
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
@@ -147,8 +137,7 @@ public class OAuth2TokenUtilsServiceTests {
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.build();
 			final OAuth2AccessToken accessToken = new OAuth2AccessToken(TokenType.BEARER, "foo-bar-123-token", Instant.now(), Instant.now().plusMillis(100000));
-			final OAuth2AuthorizedClient authorizedClient = new OAuth2AuthorizedClient(clientRegistration, "my-username", accessToken);
-		return authorizedClient;
+			return new OAuth2AuthorizedClient(clientRegistration, "my-username", accessToken);
 	}
 
 }

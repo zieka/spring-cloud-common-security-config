@@ -34,9 +34,9 @@ public enum CoreSecurityRoles {
 	SCHEDULE("SCHEDULE", "role for scheduling operations"),
 	VIEW("VIEW", "view role");
 
-	private String key;
+	private final String key;
 
-	private String name;
+	private final String name;
 
 	CoreSecurityRoles(final String key, final String name) {
 		this.key = key;

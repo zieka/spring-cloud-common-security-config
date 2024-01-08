@@ -61,7 +61,7 @@ public class DefaultAuthoritiesMapperTests {
 		Set<GrantedAuthority> authorities = authoritiesMapper.mapScopesToAuthorities("uaa", Collections.emptySet(), null);
 
 		assertThat(authorities).hasSize(7);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_MANAGE", "ROLE_CREATE", "ROLE_VIEW", "ROLE_DEPLOY", "ROLE_MODIFY",
 						"ROLE_SCHEDULE", "ROLE_DESTROY");
 	}
@@ -77,7 +77,7 @@ public class DefaultAuthoritiesMapperTests {
 		Collection<? extends GrantedAuthority> authorities = authoritiesMapper.mapScopesToAuthorities("uaa", scopes, null);
 
 		assertThat(authorities).hasSize(3);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_MANAGE", "ROLE_CREATE", "ROLE_VIEW");
 	}
 
@@ -121,7 +121,7 @@ public class DefaultAuthoritiesMapperTests {
 				scopes, null);
 
 		assertThat(authorities).hasSize(7);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_CREATE", "ROLE_DEPLOY", "ROLE_DESTROY", "ROLE_MANAGE", "ROLE_MODIFY",
 						"ROLE_SCHEDULE", "ROLE_VIEW");
 	}
@@ -141,7 +141,7 @@ public class DefaultAuthoritiesMapperTests {
 				scopes, null);
 
 		assertThat(authorities).hasSize(3);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_MANAGE", "ROLE_CREATE", "ROLE_VIEW");
 	}
 
@@ -157,7 +157,7 @@ public class DefaultAuthoritiesMapperTests {
 				scopes, null);
 
 		assertThat(authorities).hasSize(7);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_CREATE", "ROLE_DEPLOY", "ROLE_DESTROY", "ROLE_MANAGE", "ROLE_MODIFY",
 						"ROLE_SCHEDULE", "ROLE_VIEW");
 	}
@@ -173,7 +173,7 @@ public class DefaultAuthoritiesMapperTests {
 				scopes, null);
 
 		assertThat(authorities).hasSize(2);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_CREATE", "ROLE_VIEW");
 	}
 
@@ -197,7 +197,7 @@ public class DefaultAuthoritiesMapperTests {
 				scopes, null);
 
 		assertThat(authorities).hasSize(7);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_CREATE", "ROLE_DEPLOY", "ROLE_DESTROY", "ROLE_MANAGE", "ROLE_MODIFY",
 						"ROLE_SCHEDULE", "ROLE_VIEW");
 	}
@@ -222,7 +222,7 @@ public class DefaultAuthoritiesMapperTests {
 				scopes, null);
 
 		assertThat(authorities).hasSize(7);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_CREATE", "ROLE_DEPLOY", "ROLE_DESTROY", "ROLE_MANAGE", "ROLE_MODIFY",
 						"ROLE_SCHEDULE", "ROLE_VIEW");
 	}
@@ -257,7 +257,7 @@ public class DefaultAuthoritiesMapperTests {
 				scopes, null);
 
 		assertThat(authorities).hasSize(7);
-		assertThat(authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList()))
+		assertThat(authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
 				.containsExactlyInAnyOrder("ROLE_CREATE", "ROLE_DEPLOY", "ROLE_DESTROY", "ROLE_MANAGE", "ROLE_MODIFY",
 						"ROLE_SCHEDULE", "ROLE_VIEW");
 	}
